@@ -2,4 +2,6 @@
     <string name="app_name">NitaIoanMadalinAssessment</string>
     <string name="welcome">Welcome</string>
     <string name="to_my_assessment">to my assessment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

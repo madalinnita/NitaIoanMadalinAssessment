@@ -9,4 +9,14 @@
         <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">@font/libre_franklin_black</item>
     </style>
+
+    <style name="HourStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/libre_franklin_light</item>
+    </style>
+
+    <style name="TitleStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/libre_franklin_semi_bold</item>
+    </style>
 </resources>
