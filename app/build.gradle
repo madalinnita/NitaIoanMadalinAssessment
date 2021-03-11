@@ -56,5 +56,16 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.4"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.4"
 
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+
+    //LifeCycle
+    implementation 'androidx.lifecycle:lifecycle-common:2.3.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
+
 
 }

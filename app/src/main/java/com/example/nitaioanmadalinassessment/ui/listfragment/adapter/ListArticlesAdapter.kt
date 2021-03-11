@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nitaioanmadalinassessment.R
-import com.example.nitaioanmadalinassessment.ui.data.models.Article
+import com.example.nitaioanmadalinassessment.ui.data.models.articles.ArticlesResponse
 
 class ListArticlesAdapter(
     private val context: Context,
-    private val articles: List<Article>,
+    private var articles: List<ArticlesResponse>,
     private val listener: ItemClickedCallback?
 ) : RecyclerView.Adapter<ListArticlesAdapter.ListViewHolder>() {
 
@@ -46,6 +46,11 @@ class ListArticlesAdapter(
                 notifyDataSetChanged()
             }
         }
+    }
+
+    fun updateList(articles: List<ArticlesResponse>){
+        this.articles = articles
+        notifyDataSetChanged()
     }
 
 }
