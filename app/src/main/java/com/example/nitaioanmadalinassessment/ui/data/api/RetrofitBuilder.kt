@@ -12,9 +12,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
-    private const val BASE_URL = "https://newsapi.org/v2/"
-
-    fun <T> createRetrofitService(
+    private fun <T> createRetrofitService(
         clazz: Class<T>,
         needConnectionTimeout: Boolean = false,
         connectionTimeoutInSeconds: Long = 20,
@@ -33,14 +31,15 @@ object RetrofitBuilder {
 
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .client(httpClient.build())
             .build()
 
         return retrofit.create(clazz)
     }
 
-    val apiService: ApiService = createRetrofitService(clazz = ApiService::class.java, accessTokenHeaderNedeed = true)
+    val apiService: ApiService =
+        createRetrofitService(clazz = ApiService::class.java, accessTokenHeaderNedeed = true)
 
     private fun enableLogging(builder: OkHttpClient.Builder, enable: Boolean) {
         if (enable) {
@@ -65,8 +64,11 @@ object RetrofitBuilder {
         }
 
         private fun addHeaders(builder: Request.Builder) {
-            if(accessTokenHeaderNedeed) {
-                builder.addHeader(HEADER_AUTHORIZATION, HEADER_X_AUTHORIZATION_VALUE + "62683e3c012748678f3e4160e2b9ad1f")
+            if (accessTokenHeaderNedeed) {
+                builder.addHeader(
+                    HEADER_AUTHORIZATION,
+                    HEADER_X_AUTHORIZATION_VALUE + BuildConfig.API_KEY
+                )
             }
         }
 
