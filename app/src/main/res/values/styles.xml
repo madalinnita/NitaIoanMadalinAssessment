@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BigTextStyle" parent="Widget.MaterialComponents.TextView">
+       <item name="android:textSize">32sp</item>
+       <item name="android:fontFamily">@font/libre_franklin_extra_bold</item>
+    </style>
+
+    <style name="MediumTextStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/libre_franklin_black</item>
+    </style>
+</resources>
