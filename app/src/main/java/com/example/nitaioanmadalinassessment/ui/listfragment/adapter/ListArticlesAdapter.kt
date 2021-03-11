@@ -8,12 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.nitaioanmadalinassessment.R
-import com.example.nitaioanmadalinassessment.ui.data.models.articles.ArticlesResponse
+import com.example.nitaioanmadalinassessment.ui.data.models.articles.Article
 
 class ListArticlesAdapter(
     private val context: Context,
-    private var articles: List<ArticlesResponse>,
+    private var articles: List<Article>,
     private val listener: ItemClickedCallback?
 ) : RecyclerView.Adapter<ListArticlesAdapter.ListViewHolder>() {
 
@@ -24,10 +25,12 @@ class ListArticlesAdapter(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val article = articles[position]
-        holder.hour.text = article.hour
+        holder.hour.text = article.publishedAt
         holder.title.text = article.title
-        holder.image.setImageDrawable(article.image)
 
+        Glide.with(context)
+            .load(article.urlToImage)
+            .into(holder.image)
     }
 
     override fun getItemCount(): Int {
@@ -48,7 +51,7 @@ class ListArticlesAdapter(
         }
     }
 
-    fun updateList(articles: List<ArticlesResponse>){
+    fun updateList(articles: List<Article>) {
         this.articles = articles
         notifyDataSetChanged()
     }

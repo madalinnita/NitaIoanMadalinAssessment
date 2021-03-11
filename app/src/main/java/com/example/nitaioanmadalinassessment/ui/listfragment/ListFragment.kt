@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nitaioanmadalinassessment.R
 import com.example.nitaioanmadalinassessment.ui.data.api.ApiHelper
 import com.example.nitaioanmadalinassessment.ui.data.api.RetrofitBuilder
-import com.example.nitaioanmadalinassessment.ui.data.models.articles.ArticlesResponse
+import com.example.nitaioanmadalinassessment.ui.data.models.articles.Article
 import com.example.nitaioanmadalinassessment.ui.data.utils.CallStatus
 import com.example.nitaioanmadalinassessment.ui.listfragment.adapter.ItemClickedCallback
 import com.example.nitaioanmadalinassessment.ui.listfragment.adapter.ListArticlesAdapter
@@ -50,19 +50,19 @@ class ListFragment : Fragment() {
         )
         list_container.adapter =
             ListArticlesAdapter(requireContext(), emptyList(), object : ItemClickedCallback {
-                override fun selectedArticle(article: ArticlesResponse) {
+                override fun selectedArticle(article: Article) {
 
                 }
             })
     }
 
-    private fun setupObserver(){
+    private fun setupObserver() {
         viewModel.getAllArticles().observe(viewLifecycleOwner, {
             it?.let { resource ->
                 when (resource.status) {
                     CallStatus.SUCCESS -> {
                         progressBar.visibility = View.GONE
-                        resource.data?.let { articles -> retrieveList(articles) }
+                        resource.data?.let { articleResponse -> retrieveList(articleResponse.articles) }
                     }
                     CallStatus.ERROR -> {
                         progressBar.visibility = View.GONE
@@ -76,7 +76,7 @@ class ListFragment : Fragment() {
         })
     }
 
-    private fun retrieveList(articles: List<ArticlesResponse>){
+    private fun retrieveList(articles: List<Article>) {
         (list_container.adapter as ListArticlesAdapter).updateList(articles)
     }
 
