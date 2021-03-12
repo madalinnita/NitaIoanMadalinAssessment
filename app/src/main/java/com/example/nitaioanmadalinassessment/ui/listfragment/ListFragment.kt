@@ -69,16 +69,16 @@ class ListFragment : Fragment() {
                 when (resource.status) {
                     CallStatus.SUCCESS -> {
                         shimmer_view_container.stopShimmer()
-                        shimmer_view_container.hideShimmer()
+                        shimmer_view_container.visibility = View.GONE
                         resource.data?.let { articleResponse -> retrieveList(articleResponse.articles) }
                     }
                     CallStatus.ERROR -> {
                         shimmer_view_container.stopShimmer()
-                        shimmer_view_container.hideShimmer()
+                        shimmer_view_container.visibility = View.GONE
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                     }
                     CallStatus.LOADING -> {
-                        shimmer_view_container.showShimmer(true)
+                        shimmer_view_container.visibility = View.VISIBLE
                         shimmer_view_container.startShimmer()
                     }
                 }
