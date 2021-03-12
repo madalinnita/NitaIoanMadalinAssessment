@@ -68,15 +68,18 @@ class ListFragment : Fragment() {
             it?.let { resource ->
                 when (resource.status) {
                     CallStatus.SUCCESS -> {
-                        progressBar.visibility = View.GONE
+                        shimmer_view_container.stopShimmer()
+                        shimmer_view_container.hideShimmer()
                         resource.data?.let { articleResponse -> retrieveList(articleResponse.articles) }
                     }
                     CallStatus.ERROR -> {
-                        progressBar.visibility = View.GONE
+                        shimmer_view_container.stopShimmer()
+                        shimmer_view_container.hideShimmer()
                         Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
                     }
                     CallStatus.LOADING -> {
-                        progressBar.visibility = View.VISIBLE
+                        shimmer_view_container.showShimmer(true)
+                        shimmer_view_container.startShimmer()
                     }
                 }
             }
