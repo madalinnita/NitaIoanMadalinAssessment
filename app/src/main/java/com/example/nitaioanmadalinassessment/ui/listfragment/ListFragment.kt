@@ -77,7 +77,7 @@ class ListFragment : Fragment() {
     }
 
     private fun retrieveList(articles: List<Article>) {
-        (list_container.adapter as ListArticlesAdapter).updateList(articles)
+        (list_container.adapter as ListArticlesAdapter).updateList(articles.sortedWith(Comparator.comparing(Article::publishedAt)).reversed())
     }
 
     companion object {

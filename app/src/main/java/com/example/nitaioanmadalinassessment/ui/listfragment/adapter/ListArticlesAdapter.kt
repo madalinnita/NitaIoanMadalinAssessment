@@ -11,6 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.nitaioanmadalinassessment.R
 import com.example.nitaioanmadalinassessment.ui.data.models.articles.Article
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.math.roundToInt
 
 class ListArticlesAdapter(
     private val context: Context,
@@ -25,7 +29,7 @@ class ListArticlesAdapter(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val article = articles[position]
-        holder.hour.text = article.publishedAt
+        holder.hour.text = getDate(article.publishedAt)
         holder.title.text = article.title
 
         Glide.with(context)
@@ -56,4 +60,21 @@ class ListArticlesAdapter(
         notifyDataSetChanged()
     }
 
+    private fun getDate(date: String): String {
+        val publishedAt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.UK).parse(date)!!.time
+        val hours =
+            (TimeUnit.MILLISECONDS.toHours(getCurrentDateTime()) - TimeUnit.MILLISECONDS.toHours(
+                publishedAt
+            ))
+        val days = (hours / 24).toDouble().roundToInt()
+        return if(hours > 24) {
+            context.getString(R.string.header_hours_with_days, days, hours - days*24)
+        } else {
+            context.getString(R.string.header_hours, hours)
+        }
+    }
+
+    private fun getCurrentDateTime(): Long {
+        return Calendar.getInstance().time.time
+    }
 }
