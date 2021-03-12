@@ -61,14 +61,15 @@ class ListArticlesAdapter(
     }
 
     private fun getDate(date: String): String {
-        val publishedAt = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.UK).parse(date)!!.time
+        val publishedAt =
+            SimpleDateFormat(context.getString(R.string.date_format), Locale.UK).parse(date)!!.time
         val hours =
             (TimeUnit.MILLISECONDS.toHours(getCurrentDateTime()) - TimeUnit.MILLISECONDS.toHours(
                 publishedAt
             ))
-        val days = (hours / 24).toDouble().roundToInt()
-        return if(hours > 24) {
-            context.getString(R.string.header_hours_with_days, days, hours - days*24)
+        val days = (hours / 24).toInt()
+        return if (hours > 24) {
+            context.getString(R.string.header_hours_with_days, days, hours - days * 24)
         } else {
             context.getString(R.string.header_hours, hours)
         }
