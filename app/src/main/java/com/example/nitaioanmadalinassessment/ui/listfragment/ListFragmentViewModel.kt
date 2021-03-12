@@ -12,6 +12,7 @@ class ListFragmentViewModel(
 ) : ViewModel() {
 
     fun getAllArticles() = liveData(Dispatchers.IO) {
+        // delay used to prove shimmer progress effect - need to be removed in a real app
         delay(2000)
         emit(Resource.loading(data = null))
         try {

@@ -27,6 +27,7 @@
         android:layout_marginStart="@dimen/dimen_medium"
         android:layout_marginTop="@dimen/small_dimen"
         android:layout_marginEnd="@dimen/dimen_medium"
+        android:layout_marginBottom="@dimen/dimen_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.0"
