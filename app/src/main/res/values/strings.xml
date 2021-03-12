@@ -6,4 +6,5 @@
     <string name="header_hours_with_days">%1$dD, %2$dH</string>
     <string name="header_days">%1$dD</string>
     <string name="date_format">yyyy-MM-dd\'T\'HH:mm:ss\'Z\'</string>
+    <string name="country_and_domain">%1$s - %2$s</string>
 </resources>
