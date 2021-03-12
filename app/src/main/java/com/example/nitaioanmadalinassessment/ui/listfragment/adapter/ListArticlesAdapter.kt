@@ -14,7 +14,6 @@ import com.example.nitaioanmadalinassessment.ui.data.models.articles.Article
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
-import kotlin.math.roundToInt
 
 class ListArticlesAdapter(
     private val context: Context,
@@ -22,8 +21,14 @@ class ListArticlesAdapter(
     private val listener: ItemClickedCallback?
 ) : RecyclerView.Adapter<ListArticlesAdapter.ListViewHolder>() {
 
+    private val FIRST_ITEM = 0
+    private val OTHER_ITEMS = 1
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_articles, parent, false)
+        val view = if (viewType == FIRST_ITEM) LayoutInflater.from(context)
+            .inflate(R.layout.item_articles_first_item, parent, false) else LayoutInflater.from(
+            context
+        ).inflate(R.layout.item_articles, parent, false)
         return ListViewHolder(view)
     }
 
@@ -40,6 +45,9 @@ class ListArticlesAdapter(
     override fun getItemCount(): Int {
         return articles.size
     }
+
+    override fun getItemViewType(position: Int): Int =
+        if (position == 0) FIRST_ITEM else OTHER_ITEMS
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val item_container: ConstraintLayout = itemView.findViewById(R.id.item_container)
@@ -68,8 +76,10 @@ class ListArticlesAdapter(
                 publishedAt
             ))
         val days = (hours / 24).toInt()
-        return if (hours > 24) {
+        return if (hours > 24 && (hours - days * 24).toInt() != 0) {
             context.getString(R.string.header_hours_with_days, days, hours - days * 24)
+        } else if (hours > 24) {
+            context.getString(R.string.header_days, days)
         } else {
             context.getString(R.string.header_hours, hours)
         }

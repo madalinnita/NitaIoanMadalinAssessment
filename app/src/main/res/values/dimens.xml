@@ -4,4 +4,5 @@
     <dimen name="small_dimen">8dp</dimen>
     <dimen name="dimen_ultra_big">32dp</dimen>
     <dimen name="article_image_dimen">96dp</dimen>
+    <dimen name="margin_ultra_small">2dp</dimen>
 </resources>

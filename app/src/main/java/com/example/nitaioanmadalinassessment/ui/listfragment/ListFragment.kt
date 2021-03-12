@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -46,7 +47,9 @@ class ListFragment : Fragment() {
             DividerItemDecoration(
                 list_container.context,
                 (list_container.layoutManager as LinearLayoutManager).orientation
-            )
+            ).apply {
+                setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.layer_divider)!!)
+            }
         )
         list_container.adapter =
             ListArticlesAdapter(requireContext(), emptyList(), object : ItemClickedCallback {
@@ -77,7 +80,13 @@ class ListFragment : Fragment() {
     }
 
     private fun retrieveList(articles: List<Article>) {
-        (list_container.adapter as ListArticlesAdapter).updateList(articles.sortedWith(Comparator.comparing(Article::publishedAt)).reversed())
+        (list_container.adapter as ListArticlesAdapter).updateList(
+            articles.sortedWith(
+                Comparator.comparing(
+                    Article::publishedAt
+                )
+            ).reversed()
+        )
     }
 
     companion object {

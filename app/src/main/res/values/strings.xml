@@ -4,5 +4,6 @@
     <string name="to_my_assessment">to my assessment</string>
     <string name="header_hours">%1$dH</string>
     <string name="header_hours_with_days">%1$dD - %2$dH</string>
+    <string name="header_days">%1$dD</string>
     <string name="date_format">yyyy-MM-dd\'T\'HH:mm:ss\'Z\'</string>
 </resources>
