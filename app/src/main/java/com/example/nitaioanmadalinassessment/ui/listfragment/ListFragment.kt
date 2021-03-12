@@ -8,9 +8,12 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nitaioanmadalinassessment.R
+import com.example.nitaioanmadalinassessment.ui.articlefragment.ArticleFragment
 import com.example.nitaioanmadalinassessment.ui.data.api.ApiHelper
 import com.example.nitaioanmadalinassessment.ui.data.api.RetrofitBuilder
 import com.example.nitaioanmadalinassessment.ui.data.models.articles.Article
@@ -54,7 +57,8 @@ class ListFragment : Fragment() {
         list_container.adapter =
             ListArticlesAdapter(requireContext(), emptyList(), object : ItemClickedCallback {
                 override fun selectedArticle(article: Article) {
-
+                    val action = ListFragmentDirections.actionListFragmentToArticleFragment(article)
+                    findNavController().navigate(action);
                 }
             })
     }

@@ -1,6 +1,7 @@
 package com.example.nitaioanmadalinassessment.ui.data.models.articles
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Article(
     @SerializedName("source") val source: ArticleSource,
@@ -11,4 +12,4 @@ data class Article(
     @SerializedName("urlToImage") val urlToImage: String,
     @SerializedName("publishedAt") val publishedAt: String,
     @SerializedName("content") val content: String
-)
+) : Serializable
