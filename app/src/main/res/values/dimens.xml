@@ -5,4 +5,6 @@
     <dimen name="dimen_ultra_big">32dp</dimen>
     <dimen name="article_image_dimen">96dp</dimen>
     <dimen name="margin_ultra_small">2dp</dimen>
+    <dimen name="drawable_padding">12dp</dimen>
+    <dimen name="dimen_big">24dp</dimen>
 </resources>

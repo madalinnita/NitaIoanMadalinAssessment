@@ -7,4 +7,6 @@
     <string name="header_days">%1$dD</string>
     <string name="date_format">yyyy-MM-dd\'T\'HH:mm:ss\'Z\'</string>
     <string name="country_and_domain">%1$s - %2$s</string>
+    <string name="full_article">Full article</string>
+    <string name="share">Share</string>
 </resources>
