@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.nitaioanmadalinassessment.R
-import com.example.nitaioanmadalinassessment.ui.data.models.articles.Article
+import com.example.nitaioanmadalinassessment.data.models.articles.Article
 import kotlinx.android.synthetic.main.fragment_article.*
 
 class ArticleFragment : Fragment() {

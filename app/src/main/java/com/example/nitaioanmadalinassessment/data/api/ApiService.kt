@@ -1,6 +1,6 @@
-package com.example.nitaioanmadalinassessment.ui.data.api
+package com.example.nitaioanmadalinassessment.data.api
 
-import com.example.nitaioanmadalinassessment.ui.data.models.articles.ArticlesResponse
+import com.example.nitaioanmadalinassessment.data.models.articles.ArticlesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

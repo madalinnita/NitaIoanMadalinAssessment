@@ -1,4 +1,4 @@
-package com.example.nitaioanmadalinassessment.ui.data.api
+package com.example.nitaioanmadalinassessment.data.api
 
 import com.example.nitaioanmadalinassessment.BuildConfig
 import okhttp3.Interceptor

@@ -10,7 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.nitaioanmadalinassessment.R
-import com.example.nitaioanmadalinassessment.ui.data.models.articles.Article
+import com.example.nitaioanmadalinassessment.data.models.articles.Article
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit

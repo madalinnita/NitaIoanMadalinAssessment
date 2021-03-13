@@ -2,8 +2,8 @@ package com.example.nitaioanmadalinassessment.ui.listfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.nitaioanmadalinassessment.ui.data.repository.ArticlesRepository
-import com.example.nitaioanmadalinassessment.ui.data.utils.Resource
+import com.example.nitaioanmadalinassessment.data.repository.ArticlesRepository
+import com.example.nitaioanmadalinassessment.data.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 

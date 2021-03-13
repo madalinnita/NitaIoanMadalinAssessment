@@ -2,8 +2,8 @@ package com.example.nitaioanmadalinassessment.ui.listfragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.nitaioanmadalinassessment.ui.data.api.ApiHelper
-import com.example.nitaioanmadalinassessment.ui.data.repository.ArticlesRepository
+import com.example.nitaioanmadalinassessment.data.api.ApiHelper
+import com.example.nitaioanmadalinassessment.data.repository.ArticlesRepository
 
 class ListFragmentViewModelFactory(private val apiHelper: ApiHelper) : ViewModelProvider.Factory {
 

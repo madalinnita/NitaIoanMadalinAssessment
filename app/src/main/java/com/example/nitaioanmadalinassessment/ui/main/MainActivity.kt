@@ -10,6 +10,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.example.nitaioanmadalinassessment.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -47,10 +48,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setNavToggle() {
-        navToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
+        navToggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            (custom_toolbar as Toolbar),
+            R.string.nav_open,
+            R.string.nav_close
+        )
         drawerLayout.addDrawerListener(navToggle)
-        navToggle.syncState()
-
+        navToggle.apply {
+            syncState()
+            drawerArrowDrawable.color = resources.getColor(R.color.black, null)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

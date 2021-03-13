@@ -1,6 +1,5 @@
-package com.example.nitaioanmadalinassessment.ui.data.models.articles
+package com.example.nitaioanmadalinassessment.data.models.articles
 
-import android.graphics.drawable.Drawable
 import com.google.gson.annotations.SerializedName
 
 data class ArticlesResponse(@SerializedName("status") val status: String,

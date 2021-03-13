@@ -1,4 +1,4 @@
-package com.example.nitaioanmadalinassessment.ui.data.models.articles
+package com.example.nitaioanmadalinassessment.data.models.articles
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

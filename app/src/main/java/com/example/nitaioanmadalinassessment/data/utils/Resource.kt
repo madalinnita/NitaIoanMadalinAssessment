@@ -1,4 +1,4 @@
-package com.example.nitaioanmadalinassessment.ui.data.utils
+package com.example.nitaioanmadalinassessment.data.utils
 
 data class Resource<out T>(val status: CallStatus, val data: T?, val message: String?) {
     companion object {

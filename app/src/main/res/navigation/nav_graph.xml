@@ -21,6 +21,6 @@
         tools:layout="@layout/fragment_article">
         <argument
             android:name="currentArticle"
-            app:argType="com.example.nitaioanmadalinassessment.ui.data.models.articles.Article" />
+            app:argType="com.example.nitaioanmadalinassessment.data.models.articles.Article" />
     </fragment>
 </navigation>
