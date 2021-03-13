@@ -14,4 +14,6 @@
     <string name="about">About</string>
     <string name="nav_open">Navigation open</string>
     <string name="nav_close">Navigation close</string>
+    <string name="search">Search</string>
+    <string name="front_page_title">Front Page</string>
 </resources>

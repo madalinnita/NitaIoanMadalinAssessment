@@ -1,13 +1,18 @@
 package com.example.nitaioanmadalinassessment.ui.main
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.nitaioanmadalinassessment.R
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,12 +24,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(custom_toolbar as Toolbar)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
+        }
+
         setNavToggle()
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         navigationView.setNavigationItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.nav_account -> it.title.toString().showToast()
                 R.id.nav_logout -> it.title.toString().showToast()
                 R.id.nav_about -> it.title.toString().showToast()
@@ -41,12 +50,21 @@ class MainActivity : AppCompatActivity() {
         navToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
         drawerLayout.addDrawerListener(navToggle)
         navToggle.syncState()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (navToggle.onOptionsItemSelected(item)) {
             return true
         }
+        if (item.itemId == R.id.right_menu_search) {
+            item.title.toString().showToast()
+        }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.right_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }
