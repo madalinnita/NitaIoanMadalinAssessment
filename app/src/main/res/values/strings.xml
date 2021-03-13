@@ -9,4 +9,9 @@
     <string name="country_and_domain">%1$s - %2$s</string>
     <string name="full_article">Full article</string>
     <string name="share">Share</string>
+    <string name="account">Account</string>
+    <string name="log_out">Log out</string>
+    <string name="about">About</string>
+    <string name="nav_open">Navigation open</string>
+    <string name="nav_close">Navigation close</string>
 </resources>

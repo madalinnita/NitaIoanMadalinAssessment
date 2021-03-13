@@ -20,8 +20,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shimmer_auto_start="true"
-            app:shimmer_shape="radial"
-            app:shimmer_intensity="50"
+            app:shimmer_shape="linear"
+            app:shimmer_repeat_mode="reverse"
             app:layout_constraintBottom_toBottomOf="parent">
             <LinearLayout
                 android:layout_width="match_parent"
