@@ -1,5 +1,6 @@
 package com.example.nitaioanmadalinassessment.ui.main
 
+import android.R.attr.radius
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,7 +14,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.ViewCompat
 import com.example.nitaioanmadalinassessment.R
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.ShapeAppearanceModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -74,6 +79,21 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.openDrawer(GravityCompat.START)
                 }
             }
+
+        val shapeAppearanceModel1 = ShapeAppearanceModel()
+            .toBuilder()
+            .setBottomRightCorner(CornerFamily.CUT, 32f)
+            .build()
+
+        val shapeAppearanceModel2 = ShapeAppearanceModel()
+            .toBuilder()
+            .setBottomRightCorner(CornerFamily.CUT, 32f)
+            .build()
+
+        val shapeDrawable1 = MaterialShapeDrawable(shapeAppearanceModel1)
+        val shapeDrawable2 = MaterialShapeDrawable(shapeAppearanceModel2)
+        ViewCompat.setBackground(custom_toolbar_scrolled_state, shapeDrawable1)
+        ViewCompat.setBackground(custom_toolbar_back, shapeDrawable2)
 
         custom_toolbar_scrolled_state.findViewById<ImageView>(R.id.n_imageview).setOnClickListener {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
