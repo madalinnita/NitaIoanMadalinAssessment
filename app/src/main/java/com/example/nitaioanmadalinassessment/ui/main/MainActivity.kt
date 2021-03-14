@@ -94,14 +94,6 @@ class MainActivity : AppCompatActivity() {
         val shapeDrawable2 = MaterialShapeDrawable(shapeAppearanceModel2)
         ViewCompat.setBackground(custom_toolbar_scrolled_state, shapeDrawable1)
         ViewCompat.setBackground(custom_toolbar_back, shapeDrawable2)
-
-        custom_toolbar_scrolled_state.findViewById<ImageView>(R.id.n_imageview).setOnClickListener {
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START)
-            } else {
-                drawerLayout.openDrawer(GravityCompat.START)
-            }
-        }
     }
 
     private fun String.showToast() {
