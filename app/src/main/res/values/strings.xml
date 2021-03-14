@@ -16,4 +16,7 @@
     <string name="nav_close">Navigation close</string>
     <string name="search">Search</string>
     <string name="front_page_title">Front Page</string>
+    <string name="error_no_browser_installed_title">Browser unavailable</string>
+    <string name="error_no_browser_installed_text">There is no default browser configured. Please setup a browser on your device and try again.</string>
+
 </resources>

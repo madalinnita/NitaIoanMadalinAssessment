@@ -1,5 +1,6 @@
 package com.example.nitaioanmadalinassessment.ui.articlefragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.nitaioanmadalinassessment.R
 import com.example.nitaioanmadalinassessment.data.models.articles.Article
+import com.example.nitaioanmadalinassessment.utils.openInCustomTab
 import kotlinx.android.synthetic.main.fragment_article.*
 
 class ArticleFragment : Fragment() {
@@ -29,6 +31,10 @@ class ArticleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupUi(args.currentArticle)
         Log.d(TAG, "Article selected: $currentArticle")
+
+        full_article_button.setOnClickListener {
+            Uri.parse(args.currentArticle.url).openInCustomTab(requireContext())
+        }
     }
 
     private fun setupUi(article: Article) {
