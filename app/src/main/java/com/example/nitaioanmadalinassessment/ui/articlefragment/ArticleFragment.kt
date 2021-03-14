@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.nitaioanmadalinassessment.R
 import com.example.nitaioanmadalinassessment.data.models.articles.Article
+import com.example.nitaioanmadalinassessment.ui.main.SharedViewModel
 import com.example.nitaioanmadalinassessment.utils.openInCustomTab
 import kotlinx.android.synthetic.main.fragment_article.*
 
@@ -20,6 +22,8 @@ class ArticleFragment : Fragment() {
     private val TAG = this::class.java.simpleName
     private val args: ArticleFragmentArgs by navArgs()
     private var currentArticle: Article? = null
+
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +34,7 @@ class ArticleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedViewModel.showBackArrowAsToolbar.postValue(true)
         setupUi(args.currentArticle)
         Log.d(TAG, "Article selected: $currentArticle")
 

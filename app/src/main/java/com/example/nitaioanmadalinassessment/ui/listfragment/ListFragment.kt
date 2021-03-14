@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -14,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.nitaioanmadalinassessment.R
 import com.example.nitaioanmadalinassessment.data.api.ApiHelper
 import com.example.nitaioanmadalinassessment.data.api.RetrofitBuilder
@@ -22,6 +25,7 @@ import com.example.nitaioanmadalinassessment.data.utils.CallStatus
 import com.example.nitaioanmadalinassessment.ui.listfragment.adapter.ItemClickedCallback
 import com.example.nitaioanmadalinassessment.ui.listfragment.adapter.ListArticlesAdapter
 import com.example.nitaioanmadalinassessment.ui.main.SharedViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment : Fragment() {
@@ -46,6 +50,7 @@ class ListFragment : Fragment() {
         initList()
         setupObserver()
 
+        sharedViewModel.showBackArrowAsToolbar.postValue(false)
         viewModel.getAllArticlesNow("bitcoin")
         sharedViewModel.newCategory.observe(viewLifecycleOwner, {
             viewModel.getAllArticlesNow(it)
@@ -70,6 +75,22 @@ class ListFragment : Fragment() {
                     findNavController().navigate(action);
                 }
             })
+
+        list_container.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if(linearLayoutManager.findFirstVisibleItemPosition() >= 1) {
+                    sharedViewModel.recyclerViewIsScrolled.postValue(true)
+                } else {
+                    sharedViewModel.recyclerViewIsScrolled.postValue(false)
+                }
+            }
+        })
+
     }
 
     private fun setupObserver() {

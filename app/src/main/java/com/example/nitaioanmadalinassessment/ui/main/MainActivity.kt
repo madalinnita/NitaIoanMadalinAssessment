@@ -3,15 +3,17 @@ package com.example.nitaioanmadalinassessment.ui.main
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import com.example.nitaioanmadalinassessment.R
-import com.example.nitaioanmadalinassessment.ui.listfragment.ListFragmentArgs
-import com.example.nitaioanmadalinassessment.ui.listfragment.ListFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -42,6 +44,43 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_about -> it.title.toString().showToast()
             }
             true
+        }
+
+        setClickListenersForSecondToolbar()
+        observeRecycleViewScrollState()
+        observeShowArrowAsToolbar()
+    }
+
+    private fun setClickListenersForSecondToolbar() {
+        custom_toolbar_scrolled_state.findViewById<ImageView>(R.id.nav_imageview)
+            .setOnClickListener {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    custom_toolbar_scrolled_state.findViewById<ImageView>(R.id.nav_imageview)
+                        .setImageDrawable(
+                            ContextCompat.getDrawable(
+                                applicationContext,
+                                R.drawable.ic_baseline_menu_24
+                            )
+                        )
+                } else {
+                    custom_toolbar_scrolled_state.findViewById<ImageView>(R.id.nav_imageview)
+                        .setImageDrawable(
+                            ContextCompat.getDrawable(
+                                applicationContext,
+                                R.drawable.ic_baseline_arrow_back_24
+                            )
+                        )
+                    drawerLayout.openDrawer(GravityCompat.START)
+                }
+            }
+
+        custom_toolbar_scrolled_state.findViewById<ImageView>(R.id.n_imageview).setOnClickListener {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
         }
     }
 
@@ -81,10 +120,10 @@ class MainActivity : AppCompatActivity() {
         searchView = myActionMenuItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if(!query.isNullOrEmpty()) {
+                if (!query.isNullOrEmpty()) {
                     sharedViewModel.newCategory.value = query
                 }
-                if(!searchView.isIconified) {
+                if (!searchView.isIconified) {
                     searchView.isIconified = true;
                 }
                 myActionMenuItem.collapseActionView();
@@ -96,5 +135,35 @@ class MainActivity : AppCompatActivity() {
             }
         })
         return true
+    }
+
+    private fun observeRecycleViewScrollState() {
+        sharedViewModel.recyclerViewIsScrolled.observe(this, {
+            if (it) {
+                custom_toolbar.visibility = View.GONE
+                custom_toolbar_scrolled_state.visibility = View.VISIBLE
+            } else {
+                custom_toolbar.visibility = View.VISIBLE
+                custom_toolbar_scrolled_state.visibility = View.GONE
+            }
+        })
+    }
+
+    private fun observeShowArrowAsToolbar() {
+        sharedViewModel.showBackArrowAsToolbar.observe(this, {
+            if (it) {
+                custom_toolbar.visibility = View.GONE
+                custom_toolbar_scrolled_state.visibility = View.GONE
+                custom_toolbar_back.visibility = View.VISIBLE
+                custom_toolbar_back.findViewById<ImageView>(R.id.back_imageview)
+                    .setOnClickListener {
+                        onBackPressed()
+                    }
+            } else {
+                custom_toolbar.visibility = View.VISIBLE
+                custom_toolbar_scrolled_state.visibility = View.GONE
+                custom_toolbar_back.visibility = View.GONE
+            }
+        })
     }
 }
