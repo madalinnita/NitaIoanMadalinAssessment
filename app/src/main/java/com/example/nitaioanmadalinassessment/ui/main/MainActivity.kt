@@ -7,15 +7,21 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import com.example.nitaioanmadalinassessment.R
+import com.example.nitaioanmadalinassessment.ui.listfragment.ListFragmentArgs
+import com.example.nitaioanmadalinassessment.ui.listfragment.ListFragmentDirections
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navToggle: ActionBarDrawerToggle
+    private lateinit var searchView: SearchView
 
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +76,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.right_menu, menu)
-        return super.onCreateOptionsMenu(menu)
+
+        val myActionMenuItem = menu!!.findItem(R.id.right_menu_search)
+        searchView = myActionMenuItem.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(!query.isNullOrEmpty()) {
+                    sharedViewModel.newCategory.value = query
+                }
+                if(!searchView.isIconified) {
+                    searchView.isIconified = true;
+                }
+                myActionMenuItem.collapseActionView();
+                return false;
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+        return true
     }
 }

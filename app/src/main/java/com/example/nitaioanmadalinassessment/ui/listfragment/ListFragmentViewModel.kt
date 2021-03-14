@@ -1,24 +1,31 @@
 package com.example.nitaioanmadalinassessment.ui.listfragment
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
+import com.example.nitaioanmadalinassessment.data.models.articles.ArticlesResponse
 import com.example.nitaioanmadalinassessment.data.repository.ArticlesRepository
 import com.example.nitaioanmadalinassessment.data.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ListFragmentViewModel(
     private val articlesRepository: ArticlesRepository
 ) : ViewModel() {
 
-    fun getAllArticles() = liveData(Dispatchers.IO) {
-        // delay used to prove shimmer progress effect - need to be removed in a real app
-        delay(2000)
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.success(data = articlesRepository.getAllArticles()))
-        } catch (exception: Exception) {
-            emit(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+    val articlesResponse = MutableLiveData<Resource<ArticlesResponse>>()
+
+    fun getAllArticlesNow(category: String) {
+        viewModelScope.launch {
+            articlesResponse.postValue(Resource.loading(data = null))
+            delay(2000)
+            withContext(Dispatchers.IO) {
+                try {
+                    articlesResponse.postValue(Resource.success(data = articlesRepository.getAllArticles(category)))
+                } catch (exception: java.lang.Exception) {
+                    articlesResponse.postValue(Resource.error(data = null, message = exception.message ?: "Error Occurred!"))
+                }
+            }
         }
     }
 

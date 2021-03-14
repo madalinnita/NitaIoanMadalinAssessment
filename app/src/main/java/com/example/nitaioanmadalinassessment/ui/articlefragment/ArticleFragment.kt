@@ -1,5 +1,6 @@
 package com.example.nitaioanmadalinassessment.ui.articlefragment
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -34,6 +35,17 @@ class ArticleFragment : Fragment() {
 
         full_article_button.setOnClickListener {
             Uri.parse(args.currentArticle.url).openInCustomTab(requireContext())
+        }
+
+        share_button.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, args.currentArticle.url)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
     }
 
