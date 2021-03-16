@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit
 object RetrofitBuilder {
     private fun <T> createRetrofitService(
         clazz: Class<T>,
+        baseUrl: String,
         needConnectionTimeout: Boolean = false,
         connectionTimeoutInSeconds: Long = 20,
         accessTokenHeaderNedeed: Boolean = false
@@ -31,15 +32,18 @@ object RetrofitBuilder {
 
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(baseUrl)
             .client(httpClient.build())
             .build()
 
         return retrofit.create(clazz)
     }
 
-    val apiService: ApiService =
-        createRetrofitService(clazz = ApiService::class.java, accessTokenHeaderNedeed = true)
+    val apiArticlesService: ApiService =
+        createRetrofitService(clazz = ApiService::class.java, baseUrl = BuildConfig.BASE_URL_ARTICLES, accessTokenHeaderNedeed = true)
+
+    val apiUnrdService: ApiService =
+        createRetrofitService(clazz = ApiService::class.java, baseUrl = BuildConfig.BASE_URL_UNRD, accessTokenHeaderNedeed = false)
 
     private fun enableLogging(builder: OkHttpClient.Builder, enable: Boolean) {
         if (enable) {

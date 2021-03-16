@@ -21,13 +21,15 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "String", "API_KEY", "\"62683e3c012748678f3e4160e2b9ad1f\""
-            buildConfigField "String", "BASE_URL", "\"https://newsapi.org/v2/\""
+            buildConfigField "String", "API_KEY", "\"f71af7261c434b5d8be60816ed910d8b\""
+            buildConfigField "String", "BASE_URL_ARTICLES", "\"https://newsapi.org/v2/\""
+            buildConfigField "String", "BASE_URL_UNRD", "\"https://s3-eu-west-1.amazonaws.com/unrd-scratch/\""
         }
 
         release {
-            buildConfigField "String", "API_KEY", "\"62683e3c012748678f3e4160e2b9ad1f\""
-            buildConfigField "String", "BASE_URL", "\"https://newsapi.org/v2/\""
+            buildConfigField "String", "API_KEY", "\"f71af7261c434b5d8be60816ed910d8b\""
+            buildConfigField "String", "BASE_URL_ARTICLES", "\"https://newsapi.org/v2/\""
+            buildConfigField "String", "BASE_URL_UNRD", "\"https://s3-eu-west-1.amazonaws.com/unrd-scratch/\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

@@ -15,7 +15,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.nitaioanmadalinassessment.R
+import com.example.nitaioanmadalinassessment.ui.listfragment.ListFragmentDirections
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -44,6 +48,10 @@ class MainActivity : AppCompatActivity() {
 
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
+                R.id.nav_unrd -> {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_listFragment_to_unrdItemsFragment)
+                }
                 R.id.nav_account -> it.title.toString().showToast()
                 R.id.nav_logout -> it.title.toString().showToast()
                 R.id.nav_about -> it.title.toString().showToast()

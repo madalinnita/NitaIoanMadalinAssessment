@@ -18,5 +18,9 @@
     <string name="front_page_title">Front Page</string>
     <string name="error_no_browser_installed_title">Browser unavailable</string>
     <string name="error_no_browser_installed_text">There is no default browser configured. Please setup a browser on your device and try again.</string>
+    <string name="unrd_items">Unrd items</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="please_wait_nthis_is_a_massive_call">Please wait, this is a massive call.</string>
 
 </resources>

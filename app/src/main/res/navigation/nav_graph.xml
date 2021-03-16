@@ -17,6 +17,9 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null"/>
+        <action
+            android:id="@+id/action_listFragment_to_unrdItemsFragment"
+            app:destination="@id/unrdItemsFragment" />
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
@@ -27,4 +30,9 @@
             android:name="currentArticle"
             app:argType="com.example.nitaioanmadalinassessment.data.models.articles.Article" />
     </fragment>
+    <fragment
+        android:id="@+id/unrdItemsFragment"
+        android:name="com.example.nitaioanmadalinassessment.ui.unrditemsfragment.UnrdItemsFragment"
+        android:label="fragment_unrd_items"
+        tools:layout="@layout/fragment_unrd_items" />
 </navigation>
