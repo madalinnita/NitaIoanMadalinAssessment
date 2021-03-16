@@ -9,4 +9,5 @@
     <dimen name="dimen_big">24dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="margin_56">56dp</dimen>
 </resources>

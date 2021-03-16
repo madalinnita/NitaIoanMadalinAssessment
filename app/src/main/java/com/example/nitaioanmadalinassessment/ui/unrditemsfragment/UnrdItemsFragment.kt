@@ -38,6 +38,7 @@ class UnrdItemsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedViewModel.showBackArrowAsToolbar.postValue(true)
         viewModel.getUnrdItemsNow()
         observeUnrdItems()
     }
