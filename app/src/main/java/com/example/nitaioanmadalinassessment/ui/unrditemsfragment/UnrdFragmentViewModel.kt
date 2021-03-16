@@ -6,19 +6,16 @@ import com.example.nitaioanmadalinassessment.data.models.articles.ArticlesRespon
 import com.example.nitaioanmadalinassessment.data.repository.ArticlesRepository
 import com.example.nitaioanmadalinassessment.data.repository.UnrdRepository
 import com.example.nitaioanmadalinassessment.data.utils.Resource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class UnrdFragmentViewModel(
-    private val unrdRepository: UnrdRepository
+    private val unrdRepository: UnrdRepository, private val defaultDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     val unrdItemsResponse = MutableLiveData<Resource<UnrdResponse>>()
 
     fun getUnrdItemsNow() {
-        viewModelScope.launch {
+        viewModelScope.launch(defaultDispatcher) {
             unrdItemsResponse.postValue(Resource.loading(data = null))
             withContext(Dispatchers.IO) {
                 try {
